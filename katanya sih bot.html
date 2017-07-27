@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<title>[Unlimited] Panel Liker</title>
+<head>   <link rel="Shortcut Icon" type="image/x-icon" href="http://goo.gl/dZ6nLp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head> <link href=" http://hublaagram.cf/css/style.css" rel="stylesheet">
+<body>
+    <div class="wrapper">
+    <form class="form-signin">
+<div style="text-align:center;position:relative;width:auto;margin:auto;line-height:15px;margin-bottom:15px;">
+<img src="http://goo.gl/dZ6nLp" width="60px">
+    <h3>[Unlimited] Panel Liker</h3>
+</div>
+<?php
+/****************************
+    Copyright 2017
+*****************************/
+if(!empty($_GET["link"])){
+	$id = file_get_contents('https://api.instagram.com/oembed/?url='.urlencode($_GET["link"]));
+	$id = json_decode($id,true);
+	$id = $id["media_id"];
+     $file = "history.php";
+    $handle = fopen($file, 'a');	
+	fwrite($handle, $_GET['link']);
+    fwrite($handle, "<br/>");
+    fclose($handle);
+	if($id){
+		$gas = file_get_contents('http://194.58.115.48/add?id='.$id);
+		header("Refresh:5"); 	echo ' <form method="GET"> Sukses/Gak-nya Cek Sendiri ! <br> <br>
+      <a  <label for="inputurl" class="sr-only">Url foto</label> </a <br>
+							<input name="link" placeholder=https://www.instagram.com/p/BSkcTFBgoA8/ class="input_field">
+<br>
+     <a   <label for="inputpoint" class="sr-only">Jumlah</label> </a <br>
+        <input type="text" id="points" name="points" class="input_field" placeholder="1.000.000" required>
+        <br>    
+							<input type="submit" value="Submit" class="btn btn-success">
+</div>
+</form>'; 
+	}else{
+		echo '<br><a <span style="color: white">FAILED ! </span> </a> Tidak ada Foto pada link yang dimasukkan, cek kembali Url Foto. Atau akun dalam mode Private, pastikan akun dalam mode public.';
+	}
+}else{
+	echo '<form method="GET"> 
+      <a  <label for="inputurl" class="sr-only">Url foto</label> </a <br>
+							<input name="link" placeholder=https://www.instagram.com/p/BSkcTFBgoA8/ class="input_field">
+<br>
+     <a   <label for="inputpoint" class="sr-only">Jumlah</label> </a <br>
+        <input type="text" id="points" name="points" class="input_field" placeholder="1.000.000" required>
+        <br>    
+							<input type="submit" value="Submit" class="btn btn-success">
+</div>
+</form>';
+}
+?></div>
+<div class="wrapper" style="margin-top:12px !important;">
+<center><a href="https://goo.gl/XVahQf">WhatsApp Messenger</a>
+</div>
+</body>
+</body>
+</html>
